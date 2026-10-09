@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#123b82">
+<meta name="description" content="Free Diploma E&TC study portal: semester subjects, notes, tests, PYQ, answers, projects and electronics jobs.">
+<title>All IN ONE E&TC (EJ)</title>
+<style>
+:root{--blue:#1746a2;--blue2:#2563eb;--ink:#15213b;--muted:#63708a;--bg:#f3f6fc;--card:#fff;--line:#e3e9f4;--green:#0b8a62}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:var(--bg);color:var(--ink)}
+header{background:linear-gradient(135deg,#102b68,#2563eb);color:white;padding:26px 16px 22px}
+.top{max-width:1100px;margin:auto;display:flex;align-items:center;gap:14px}.logo{width:56px;height:56px;display:grid;place-items:center;border-radius:17px;background:#ffffff20;font-size:29px}
+h1{font-size:clamp(22px,4vw,34px);margin:0}header p{margin:6px 0 0;color:#e1eaff}.tag{display:inline-block;margin-top:12px;background:#ffffff20;border:1px solid #ffffff40;border-radius:99px;padding:5px 10px;font-size:12px}
+main{max-width:1100px;margin:auto;padding:16px}.toolbar{display:flex;gap:10px;flex-wrap:wrap;margin:4px 0 18px}.search{flex:1;min-width:190px;padding:14px 15px;border:1px solid var(--line);border-radius:13px;font-size:16px;background:white}.select{padding:12px;border:1px solid var(--line);border-radius:12px;background:white;color:var(--ink)}
+.notice{padding:12px 14px;border-radius:12px;background:#eaf2ff;color:#1746a2;margin-bottom:20px;font-size:14px}
+h2{font-size:21px;margin:24px 0 12px}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+@media(min-width:650px){.grid{grid-template-columns:repeat(4,minmax(0,1fr))}}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px;box-shadow:0 4px 15px #172b4d08}.tile{cursor:pointer;transition:.15s}.tile:hover{transform:translateY(-2px);border-color:#b6c9fa}.emoji{font-size:26px}.tile b{display:block;margin:8px 0 3px}.muted{font-size:13px;color:var(--muted);line-height:1.5}
+.sem-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.sem{padding:16px 6px;text-align:center;font-weight:700;color:var(--blue);border:1px solid #dbe6ff;border-radius:14px;background:white;cursor:pointer}
+.sem.active{background:var(--blue);color:white}
+#subjectArea{margin-top:14px}.subject{background:white;border:1px solid var(--line);border-radius:13px;margin:9px 0;overflow:hidden}
+.subject-head{padding:14px;display:flex;justify-content:space-between;gap:10px;align-items:center;cursor:pointer}.subject-head b{font-size:14px}.subject-body{padding:0 14px 14px;display:none}.subject-body.open{display:block}
+.pills{display:flex;flex-wrap:wrap;gap:7px}.pill{background:#edf3ff;color:#1949a8;padding:7px 9px;border-radius:8px;font-size:12px}
+.panel{display:none;margin-top:24px}.panel.show{display:block}.panel .card{line-height:1.6}.back{margin-bottom:10px;background:#e6edff;color:#1746a2;padding:9px 12px;border-radius:9px;border:0}
+footer{text-align:center;padding:30px 16px;color:var(--muted);font-size:13px}.small{font-size:12px;color:var(--muted)}
+a{color:var(--blue)}button{font:inherit}
+</style>
+</head>
+<body>
+<header><div class="top"><div class="logo">📡</div><div><h1>All IN ONE E&amp;TC (EJ)</h1><p>Diploma Electronics &amp; Telecommunication Study Portal</p><span class="tag">FREE STUDENT RESOURCE • MOBILE FRIENDLY</span></div></div></header>
+<main>
+<div class="toolbar">
+<input class="search" id="search" placeholder="🔎 Search subject or section..." aria-label="Search" oninput="filterContent()">
+<select class="select" id="language" aria-label="Language" onchange="changeLanguage()"><option value="en">English</option><option value="mr">मराठी</option><option value="hi">हिन्दी</option></select>
+<select class="select" id="scheme" aria-label="Scheme" onchange="schemeChanged()"><option value="K-Scheme">K-Scheme</option><option value="J-Scheme">J-Scheme</option><option value="other">Other scheme</option></select>
+</div>
+<div class="notice" id="schemeNotice">Selected: K-Scheme. Subject list is a starter list; please verify your scheme and syllabus with the latest official MSBTE documents.</div>
+
+<section id="home">
+<h2>Study Dashboard</h2>
+<div class="grid" id="featureGrid">
+<div class="card tile" onclick="openPanel('notes')"><span class="emoji">📘</span><b data-en="Notes & Units" data-mr="नोट्स आणि युनिट्स" data-hi="नोट्स और यूनिट">Notes &amp; Units</b><span class="muted">Unit-wise learning material</span></div>
+<div class="card tile" onclick="openPanel('tests')"><span class="emoji">📝</span><b data-en="Unit Tests" data-mr="युनिट टेस्ट" data-hi="यूनिट टेस्ट">Unit Tests</b><span class="muted">Practice questions</span></div>
+<div class="card tile" onclick="openPanel('pyq')"><span class="emoji">📄</span><b>PYQ</b><span class="muted">Previous-year question resources</span></div>
+<div class="card tile" onclick="openPanel('answers')"><span class="emoji">✅</span><b data-en="Manual & Model Answers" data-mr="मॅन्युअल आणि मॉडेल उत्तरे" data-hi="मैनुअल और मॉडल उत्तर">Manual &amp; Model Answers</b><span class="muted">Answer-writing support</span></div>
+<div class="card tile" onclick="openPanel('projects')"><span class="emoji">🔧</span><b>Projects &amp; Assignments</b><span class="muted">Micro-project write-ups</span></div>
+<div class="card tile" onclick="openPanel('jobs')"><span class="emoji">💼</span><b>Jobs &amp; Apprenticeship</b><span class="muted">Electronics career section</span></div>
+<div class="card tile" onclick="openPanel('downloads')"><span class="emoji">📥</span><b>Downloads</b><span class="muted">PDF resources (when added)</span></div>
+<div class="card tile" onclick="openPanel('progress')"><span class="emoji">📊</span><b>My Progress</b><span class="muted">Local demo tracker</span></div>
+</div>
+
+<h2>Choose Semester</h2>
+<div class="sem-grid" id="semGrid">
+<button class="sem" onclick="selectSemester(1)">Sem 1</button><button class="sem" onclick="selectSemester(2)">Sem 2</button><button class="sem" onclick="selectSemester(3)">Sem 3</button><button class="sem" onclick="selectSemester(4)">Sem 4</button><button class="sem" onclick="selectSemester(5)">Sem 5</button><button class="sem" onclick="selectSemester(6)">Sem 6</button>
+</div>
+<div id="subjectArea"></div>
+</section>
+
+<section class="panel" id="notes"><button class="back" onclick="goHome()">← Home</button><h2>Notes &amp; Units</h2><div class="card">Choose a semester and subject above. Unit-wise notes will be added as original study material. Content is not yet fully populated.</div></section>
+<section class="panel" id="tests"><button class="back" onclick="goHome()">← Home</button><h2>Unit Tests</h2><div class="card">Planned: Unit Test 1, Unit Test 2, MCQ and written questions, timer, score and result review. Sample questions will be added next.</div></section>
+<section class="panel" id="pyq"><button class="back" onclick="goHome()">← Home</button><h2>Previous Year Questions (PYQ)</h2><div class="card">Planned fields: question, answer, year, marks and repeat analysis. Only verified or user-provided/authorized papers should be added.</div></section>
+<section class="panel" id="answers"><button class="back" onclick="goHome()">← Home</button><h2>Manual &amp; Model Paper Answers</h2><div class="card">Subject-wise answer sections are planned. Original explanations and practice answers will be added; this starter website does not yet contain the full answer bank.</div></section>
+<section class="panel" id="projects"><button class="back" onclick="goHome()">← Home</button><h2>Micro Projects &amp; Assignments</h2><div class="card">Planned: project abstracts, objectives, components, block diagrams, working, applications and assignment support.</div></section>
+<section class="panel" id="jobs"><button class="back" onclick="goHome()">← Home</button><h2>Jobs &amp; Apprenticeship</h2><div class="card">This section is a placeholder. Current vacancies must be verified before applying. Never pay a recruiter for a job offer; check the employer's official website.</div></section>
+<section class="panel" id="downloads"><button class="back" onclick="goHome()">← Home</button><h2>Downloads</h2><div class="card">PDF download and share links can be added when study documents are prepared.</div></section>
+<section class="panel" id="progress"><button class="back" onclick="goHome()">← Home</button><h2>My Progress</h2><div class="card">Demo only: your browser can remember the number of subjects you open on this device. Login and cloud sync are not connected yet.<p id="progressText">Subjects opened: 0</p><button onclick="resetProgress()">Reset progress</button></div></section>
+</main>
+<footer>© 2026 All IN ONE E&amp;TC (EJ) • Free student website starter<br><span class="small">This is a prototype. It is not yet hosted online and does not yet include a full notes/PYQ database, login, live notifications or admin panel.</span></footer>
+<script>
+const subjects={
+1:["Basic Mathematics (311302)","Communication Skills (English) (311303)","Basic Science (311305)"],
+2:["Applied Mathematics (312301)","Basic Electronics (312314)","Elements of Electrical Engineering (312315)"],
+3:["Digital Techniques (313303)","Analog Electronics (313324)","Circuits & Networks (313325)","Principles of Electronic Communication (313326)","Essence of Indian Constitution (313002)"],
+4:["Environmental Education and Sustainability (314301)","Digital Communication Systems (314326)","Consumer Electronic Systems (314327)","Microcontroller & Applications (314328)","Basic Power Electronics (314363)"],
+5:["Embedded System (315338)","Mobile & Wireless Communication (315339)","Advance Power Electronics (315340)","IoT Applications (315341)","Microwave Engineering & Radar System (315342)"],
+6:["Management (315301)","Emerging Trends in Electronics (316337)","Optical Network and Satellite Communication (316332)","Computer Network & Data Communication (316338)","Automation & PLC (316334)","Drone Technology (316335)","VLSI Applications (316340)","Solar Technology and Maintenance (316374)","Capstone Project (316004)"]
+};
+let opened=Number(localStorage.getItem("openedSubjects")||0);
+function selectSemester(n){
+ document.querySelectorAll('.sem').forEach((b,i)=>b.classList.toggle('active',i===n-1));
+ document.getElementById('subjectArea').innerHTML='<h2>Semester '+n+' Subjects</h2>'+subjects[n].map((s,i)=>`<div class="subject searchable"><div class="subject-head" onclick="toggleSubject(this)"><b>${s}</b><span>＋</span></div><div class="subject-body"><div class="pills"><span class="pill" onclick="openPanel('notes')">Unit-wise Notes</span><span class="pill" onclick="openPanel('tests')">Unit Tests</span><span class="pill" onclick="openPanel('pyq')">PYQ</span><span class="pill" onclick="openPanel('answers')">Manual / Model Answers</span><span class="pill" onclick="openPanel('projects')">Projects / Assignments</span></div><p class="muted">Study content for this subject will be added in the next content update.</p></div></div>`).join('');
+ document.getElementById('subjectArea').scrollIntoView({behavior:'smooth',block:'start'});
+}
+function toggleSubject(el){const body=el.nextElementSibling;body.classList.toggle('open');el.querySelector('span').textContent=body.classList.contains('open')?'−':'＋';opened++;localStorage.setItem('openedSubjects',opened);updateProgress()}
+function openPanel(id){document.querySelectorAll('.panel').forEach(p=>p.classList.remove('show'));document.getElementById(id).classList.add('show');document.getElementById(id).scrollIntoView({behavior:'smooth'});if(id==='progress')updateProgress()}
+function goHome(){document.querySelectorAll('.panel').forEach(p=>p.classList.remove('show'));document.getElementById('home').scrollIntoView({behavior:'smooth'})}
+function schemeChanged(){const v=document.getElementById('scheme').value;document.getElementById('schemeNotice').textContent=v==='K-Scheme'?'Selected: K-Scheme. Subject list is a starter list; verify with latest official MSBTE syllabus.':v==='J-Scheme'?'Selected: J-Scheme. This starter version still displays the K-Scheme subject list; J-Scheme mapping is not added yet.':'Selected: Other scheme. Custom subject mapping is not added yet.'}
+function filterContent(){const q=document.getElementById('search').value.toLowerCase();document.querySelectorAll('.tile,.subject').forEach(el=>{el.style.display=el.innerText.toLowerCase().includes(q)||!q?'':'none'});if(q){document.getElementById('subjectArea').style.display='block'}else{document.getElementById('subjectArea').style.display=''}}
+function changeLanguage(){const l=document.getElementById('language').value;document.querySelectorAll('[data-en]').forEach(el=>el.textContent=el.dataset[l]||el.dataset.en)}
+function updateProgress(){document.getElementById('progressText').textContent='Subjects opened: '+opened}
+function resetProgress(){opened=0;localStorage.setItem('openedSubjects','0');updateProgress()}
+updateProgress();
+</script>
+</body>
+</html>
