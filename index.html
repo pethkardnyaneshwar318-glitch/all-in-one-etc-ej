@@ -1,87 +1,309 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#123b82">
-<title>All IN ONE E&TC (EJ)</title>
-<style>
-:root{--blue:#1746a2;--pale:#edf3ff;--bg:#f4f7fc;--ink:#17233b;--muted:#65728a;--line:#dfe7f3}
-*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,"Noto Sans Devanagari",Arial,sans-serif}
-header{padding:24px 16px;color:white;background:linear-gradient(135deg,#102b68,#2563eb)}.wrap{max-width:1000px;margin:auto}h1{font-size:clamp(23px,5vw,34px);margin:0}header p{margin:7px 0 0;color:#e5edff}.badge{display:inline-block;margin-top:12px;padding:5px 10px;border-radius:30px;background:#ffffff24;font-size:12px}
-main{max-width:1000px;margin:auto;padding:16px}.toolbar{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 16px}.toolbar input,.toolbar select{font:inherit;padding:12px;border:1px solid var(--line);border-radius:12px;background:#fff}.toolbar input{flex:1;min-width:180px}
-.notice{padding:12px;background:#e9f1ff;color:#16429a;border-radius:12px;font-size:14px;margin-bottom:18px}
-.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}@media(min-width:650px){.grid{grid-template-columns:repeat(4,minmax(0,1fr))}}
-.card{background:white;border:1px solid var(--line);border-radius:15px;padding:15px;box-shadow:0 4px 14px #152d5008}.tile{cursor:pointer}.tile b{display:block;margin:7px 0}.muted{font-size:13px;color:var(--muted);line-height:1.5}
-h2{font-size:21px;margin:22px 0 12px}.semgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.sem{padding:13px 4px;border:1px solid #d7e3ff;background:white;color:var(--blue);border-radius:12px;font-weight:700}.sem.active{background:var(--blue);color:white}
-.subject{margin:9px 0;background:white;border:1px solid var(--line);border-radius:13px;overflow:hidden}.subject button.head{width:100%;text-align:left;border:0;background:white;padding:14px;font:inherit;display:flex;justify-content:space-between;gap:10px;font-weight:700}.body{display:none;padding:0 14px 15px;line-height:1.6}.body.open{display:block}.actions{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}.actions button,.back{border:0;border-radius:9px;padding:9px 11px;background:var(--pale);color:var(--blue);font-weight:600}
-.panel{display:none}.panel.show{display:block}.back{margin:8px 0}.lesson h3{margin:8px 0}.lesson p,.lesson li{line-height:1.65}.qa{border-top:1px solid var(--line);padding:10px 0}.label{font-size:12px;color:var(--blue);font-weight:800;text-transform:uppercase}.callout{background:#fff8df;padding:10px;border-radius:10px;font-size:13px}footer{text-align:center;color:var(--muted);padding:26px 15px;font-size:12px}
-</style></head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#123b82">
+  <meta name="description" content="Free diploma Electronics and Telecommunication study portal">
+  <title>All-in-One E&amp;TC EJ</title>
+  <style>
+    :root {
+      --blue: #1746a2;
+      --blue-dark: #102b68;
+      --pale: #edf3ff;
+      --bg: #f4f7fc;
+      --ink: #17233b;
+      --muted: #65728a;
+      --line: #dfe6f1;
+      --white: #fff;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; background: var(--bg); color: var(--ink);
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.5;
+    }
+    .wrap { width: min(100% - 28px, 1000px); margin: 0 auto; }
+    header {
+      padding: 28px 0 25px; color: white;
+      background: linear-gradient(135deg, var(--blue-dark), #2563eb);
+    }
+    header h1 { margin: 0; font-size: clamp(25px, 5vw, 36px); line-height: 1.2; }
+    header p { margin: 10px 0 0; color: #e8efff; }
+    .tagline { font-weight: 700; letter-spacing: .3px; }
+    main { padding: 18px 0 30px; }
+    .toolbar { display: flex; flex-wrap: wrap; gap: 9px; margin-bottom: 14px; }
+    input, select, button {
+      font: inherit; border-radius: 10px; border: 1px solid var(--line);
+    }
+    input, select { padding: 11px 12px; background: white; color: var(--ink); }
+    #search { flex: 1 1 220px; min-width: 0; }
+    .toolbar select { flex: 0 1 150px; }
+    .notice {
+      padding: 12px 14px; background: #e9f1ff; color: #16429a;
+      border-radius: 12px; font-size: 14px; margin-bottom: 20px;
+    }
+    h2 { font-size: 22px; margin: 22px 0 12px; }
+    .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+    .card {
+      background: white; border: 1px solid var(--line); border-radius: 15px;
+      padding: 15px; box-shadow: 0 4px 14px #15205008;
+    }
+    .tile { cursor: pointer; text-align: left; color: var(--ink); min-height: 94px; transition: transform .12s, border-color .12s; }
+    .tile:hover { transform: translateY(-2px); border-color: #9db7f5; }
+    .tile b { display: block; margin-bottom: 5px; }
+    .muted { display: block; color: var(--muted); font-size: 14px; }
+    .semgrid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+    .sem {
+      padding: 12px 8px; background: white; border: 1px solid var(--line);
+      border-radius: 12px; cursor: pointer; color: var(--ink); font-weight: 650;
+    }
+    .sem.active { color: white; background: var(--blue); border-color: var(--blue); }
+    .subject-list { display: grid; gap: 9px; }
+    .subject {
+      background: white; border: 1px solid var(--line); border-radius: 12px; overflow: hidden;
+    }
+    .subject-head {
+      width: 100%; padding: 13px; border: 0; border-radius: 0; background: white;
+      text-align: left; display: flex; justify-content: space-between; gap: 10px;
+      color: var(--ink); cursor: pointer;
+    }
+    .subject-head span:last-child { color: var(--blue); font-weight: 700; }
+    .subject-body { display: none; padding: 0 13px 14px; }
+    .subject-body.open { display: block; }
+    .subject-body p { margin: 5px 0 10px; }
+    .small-btn, .back {
+      display: inline-block; border: 0; background: var(--blue); color: white;
+      padding: 9px 12px; border-radius: 9px; cursor: pointer; margin: 3px 5px 3px 0;
+    }
+    .panel { display: none; }
+    .panel.show { display: block; }
+    .back { margin: 0 0 8px; }
+    .lesson { background: white; border: 1px solid var(--line); border-radius: 14px; padding: 15px; margin: 10px 0; }
+    .lesson h3 { margin: 4px 0 8px; }
+    .lesson li { margin: 5px 0; }
+    footer { padding: 22px 12px; text-align: center; color: var(--muted); font-size: 14px; border-top: 1px solid var(--line); }
+    @media (min-width: 650px) {
+      .grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+      .semgrid { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+    }
+    @media (max-width: 380px) {
+      .grid { grid-template-columns: 1fr; }
+      .toolbar select { flex: 1 1 120px; }
+    }
+  </style>
+</head>
 <body>
-<header><div class="wrap"><h1>📡 All-in-One E&amp;TC EJ</h1><p>Diploma Electronics &amp; Telecommunication — Free Study Portal</p><span class="badge">NOTES • MANUAL ANSWERS • EXAM PREPARATION</span></div></header>
-<main>
-<div class="toolbar"><select id="language" aria-label="Language" onchange="changeLanguage()"><option value="en" selected>English</option><option value="mr">मराठी</option></select><input id="search" placeholder="🔎 Search subjects or notes..." oninput="filterItems()"><select id="scheme" onchange="schemeMsg()"><option>K-Scheme</option><option>J-Scheme (subject mapping not added)</option><option>Other scheme</option></select></div>
-<div class="notice" id="notice">K-Scheme is selected. Please verify subjects and codes against the current MSBTE syllabus.</div>
-<section id="home">
-<h2 data-en="Study Sections" data-mr="अभ्यास विभाग">Study Sections</h2>
-<div class="grid">
-<div class="card tile" onclick="showPanel('notes')">📘<b>Notes &amp; Units</b><span class="muted" data-en="Subject-wise notes" data-mr="विषयानुसार नोट्स">Subject-wise notes</span></div>
-<div class="card tile" onclick="showPanel('manual')">✅<b>Manual Answers</b><span class="muted" data-en="Questions and answers" data-mr="प्रश्नोत्तरे व उत्तरलेखन">Questions and answers</span></div>
-<div class="card tile" onclick="showPanel('papers')">📄<b>Model Papers / PYQ</b><span class="muted" data-en="Practice section" data-mr="सरावासाठी विभाग">Practice section</span></div>
-<div class="card tile" onclick="showPanel('how')">📥<b>PDF / वापर</b><span class="muted" data-en="How to use study material" data-mr="अभ्यास साहित्य कसे वापरायचे">How to use study material</span></div>
-</div>
-<h2 data-en="Choose Semester" data-mr="Semester निवडा">Choose Semester</h2><div class="semgrid">
-<button class="sem" onclick="semester(1,this)">Sem 1</button><button class="sem" onclick="semester(2,this)">Sem 2</button><button class="sem" onclick="semester(3,this)">Sem 3</button><button class="sem" onclick="semester(4,this)">Sem 4</button><button class="sem active" onclick="semester(5,this)">Sem 5</button><button class="sem" onclick="semester(6,this)">Sem 6</button>
-</div><div id="subjects"></div>
-</section>
-<section id="notes" class="panel"><button class="back" onclick="home()">← Home</button><h2>📘 Notes &amp; Units</h2><div class="card">Semester निवडा → विषय उघडा → <b>Notes</b> दाबा. सध्या Mobile &amp; Wireless Communication साठी नमुना नोट्स जोडल्या आहेत. उर्वरित विषयांचे साहित्य टप्प्याटप्प्याने जोडले जाईल.</div></section>
-<section id="manual" class="panel"><button class="back" onclick="home()">← Home</button><h2>✅ Manual Answers</h2><div class="card">विषय उघडून <b>Manual Answers</b> निवडा. सध्या Mobile &amp; Wireless Communication साठी काही नमुना प्रश्नोत्तरे जोडली आहेत. ही अभ्यासासाठी मूळ तयार केलेली उत्तरे आहेत; तुमच्या अधिकृत manual शी पडताळा.</div></section>
-<section id="papers" class="panel"><button class="back" onclick="home()">← Home</button><h2>📄 Model Papers / PYQ</h2><div class="card">या विभागात verified model papers आणि previous-year question resources जोडले जातील. सध्या डाउनलोड करण्यासाठी अधिकृत प्रश्नपत्रिका जोडलेली नाही.</div></section>
-<section id="how" class="panel"><button class="back" onclick="home()">← Home</button><h2>📥 वापर आणि PDF</h2><div class="card">ही website मोफत आहे. अभ्यास नोट्स ब्राउझरमध्ये वाचता येतील. PDF download सुविधा विषयानुसार PDF तयार झाल्यावर जोडली जाईल.</div></section>
-</main><footer>Founded by Dnyan © 2026<br>All-in-One E&amp;TC EJ • Free student project<br>Content is a starter; verify syllabus and codes with current official MSBTE material.</footer>
-<script>
-const data={
-1:["Basic Mathematics","Communication Skills","Basic Science"],
-2:["Applied Mathematics","Basic Electronics","Elements of Electrical Engineering"],
-3:["Digital Techniques","Analog Electronics","Circuits & Networks","Principles of Electronic Communication"],
-4:["Environmental Education and Sustainability","Digital Communication Systems","Consumer Electronic Systems","Microcontroller & Applications","Basic Power Electronics"],
-5:["Embedded System","Mobile & Wireless Communication","Advance Power Electronics","IoT Applications","Microwave Engineering & Radar System"],
-6:["Management","Emerging Trends in Electronics","Optical Network and Satellite Communication","Computer Network & Data Communication","Automation & PLC","Drone Technology","VLSI Applications","Solar Technology and Maintenance","Capstone Project"]
-};
-const mobileNotes=[
-["Cellular concept","मोबाइल सेवा क्षेत्राला लहान भौगोलिक भागांत विभागले जाते. प्रत्येक भागाला Cell म्हणतात आणि प्रत्येक cell ला साधारणपणे Base Transceiver Station (BTS) सेवा देते."],
-["Frequency reuse","एकाच frequency channel चा पुरेसा अंतर असलेल्या वेगवेगळ्या cells मध्ये पुन्हा वापर करणे म्हणजे Frequency Reuse. यामुळे उपलब्ध spectrum चा कार्यक्षम वापर होतो."],
-["Handoff / Handover","मोबाइल वापरकर्ता एका cell मधून दुसऱ्या cell मध्ये जाताना चालू कॉल किंवा data session दुसऱ्या cell कडे हस्तांतरित करण्याच्या प्रक्रियेला Handoff म्हणतात."],
-["GSM","GSM चे पूर्ण रूप Global System for Mobile Communications. ही 2G digital cellular mobile communication प्रणाली आहे."],
-["CDMA","CDMA चे पूर्ण रूप Code Division Multiple Access. यात वेगवेगळ्या वापरकर्त्यांचे signals वेगवेगळ्या codes वापरून ओळखले जातात."]
-];
-const mobileQA=[
-["Cell म्हणजे काय?","मोबाइल नेटवर्कमधील सेवा देण्यासाठी ठरवलेला भौगोलिक क्षेत्राचा भाग म्हणजे Cell."],
-["Frequency reuse म्हणजे काय?","पुरेसे अंतर राखून वेगवेगळ्या cells मध्ये समान frequency channel पुन्हा वापरण्याच्या पद्धतीला Frequency Reuse म्हणतात."],
-["Handoff ची गरज का असते?","मोबाइल वापरकर्ता एका cell च्या coverage मधून दुसऱ्या cell मध्ये जात असताना कॉल किंवा data connection शक्य तितका अखंड सुरू ठेवण्यासाठी handoff आवश्यक असतो."],
-["GSM चे पूर्ण रूप लिहा.","Global System for Mobile Communications."],
-["CDMA चे पूर्ण रूप लिहा.","Code Division Multiple Access."]
-];
-let currentSem=5;
-function semester(n,btn){currentSem=n;document.querySelectorAll('.sem').forEach(x=>x.classList.remove('active'));btn.classList.add('active');renderSubjects();document.getElementById('subjects').scrollIntoView({behavior:'smooth',block:'start'})}
+<header>
+  <div class="wrap">
+    <h1>All-in-One E&amp;TC EJ</h1>
+    <p data-en="Diploma Electronics &amp; Telecommunication Free Study Portal" data-mr="डिप्लोमा इलेक्ट्रॉनिक्स आणि टेलिकम्युनिकेशन मोफत अभ्यास पोर्टल">Diploma Electronics &amp; Telecommunication Free Study Portal</p>
+    <p class="tagline">Learn • Practice • Succeed</p>
+  </div>
+</header>
 
-function changeLanguage(){
- const lang=document.getElementById('language').value; document.documentElement.lang=lang;
- document.querySelectorAll('[data-en][data-mr]').forEach(el=>{el.textContent=el.dataset[lang]});
- document.getElementById('search').placeholder=lang==='en'?'🔎 Search subjects or notes...':'🔎 विषय किंवा नोट्स शोधा...';
- const notice=document.getElementById('notice'); const v=document.getElementById('scheme').value;
- if(lang==='en') notice.textContent=v==='K-Scheme'?'K-Scheme is selected. Please verify subjects and codes against the current MSBTE syllabus.':'This scheme list is a starter only. Please verify it against the official syllabus.';
- else notice.textContent=v==='K-Scheme'?'K-Scheme निवडले आहे. विषय/कोड तुमच्या चालू MSBTE syllabus शी जुळवून घ्या.':'ही विषययादी प्राथमिक आहे. अधिकृत syllabus तपासा.';
+<main class="wrap">
+  <div class="toolbar">
+    <input id="search" type="search" placeholder="Search subjects or notes..." aria-label="Search subjects or notes">
+    <select id="language" aria-label="Language">
+      <option value="en" selected>English</option>
+      <option value="mr">मराठी</option>
+    </select>
+    <select id="scheme" aria-label="Scheme">
+      <option value="K">K-Scheme</option>
+      <option value="J">J-Scheme</option>
+    </select>
+  </div>
+  <div class="notice" id="notice">K-Scheme selected. Please verify subject names and codes with the current MSBTE syllabus.</div>
+
+  <section id="home">
+    <h2 data-en="Study Sections" data-mr="अभ्यास विभाग">Study Sections</h2>
+    <div class="grid">
+      <button class="card tile" onclick="showPanel('notes')"><b data-en="Notes &amp; Units" data-mr="नोट्स आणि युनिट्स">Notes &amp; Units</b><span class="muted" data-en="Subject-wise study notes" data-mr="विषयानुसार अभ्यास नोट्स">Subject-wise study notes</span></button>
+      <button class="card tile" onclick="showPanel('tests')"><b data-en="Unit Tests" data-mr="युनिट टेस्ट">Unit Tests</b><span class="muted" data-en="Practice questions" data-mr="सराव प्रश्न">Practice questions</span></button>
+      <button class="card tile" onclick="showPanel('papers')"><b data-en="Model Papers / PYQ" data-mr="मॉडेल पेपर / मागील प्रश्नपत्रिका">Model Papers / PYQ</b><span class="muted" data-en="Practice for exams" data-mr="परीक्षेचा सराव">Practice for exams</span></button>
+      <button class="card tile" onclick="showPanel('manual')"><b data-en="Manual Answers" data-mr="मॅन्युअल उत्तरे">Manual Answers</b><span class="muted" data-en="Practical and model answers" data-mr="प्रॅक्टिकल आणि नमुना उत्तरे">Practical and model answers</span></button>
+      <button class="card tile" onclick="showPanel('projects')"><b data-en="Projects &amp; Assignments" data-mr="प्रोजेक्ट आणि असाइनमेंट">Projects &amp; Assignments</b><span class="muted" data-en="Ideas and guidance" data-mr="कल्पना आणि मार्गदर्शन">Ideas and guidance</span></button>
+      <button class="card tile" onclick="showPanel('jobs')"><b data-en="Jobs &amp; Apprenticeship" data-mr="नोकरी आणि अप्रेंटिसशिप">Jobs &amp; Apprenticeship</b><span class="muted" data-en="Career information" data-mr="करिअर माहिती">Career information</span></button>
+      <button class="card tile" onclick="showPanel('downloads')"><b data-en="Downloads" data-mr="डाउनलोड्स">Downloads</b><span class="muted" data-en="Study resources" data-mr="अभ्यास साहित्य">Study resources</span></button>
+      <button class="card tile" onclick="showPanel('progress')"><b data-en="My Progress" data-mr="माझी प्रगती">My Progress</b><span class="muted" data-en="Track your study locally" data-mr="अभ्यासाची नोंद ठेवा">Track your study locally</span></button>
+    </div>
+
+    <h2 data-en="Choose Semester" data-mr="सेमिस्टर निवडा">Choose Semester</h2>
+    <div class="semgrid" id="semgrid">
+      <button class="sem" onclick="semester(1,this)">Sem 1</button>
+      <button class="sem" onclick="semester(2,this)">Sem 2</button>
+      <button class="sem" onclick="semester(3,this)">Sem 3</button>
+      <button class="sem" onclick="semester(4,this)">Sem 4</button>
+      <button class="sem active" onclick="semester(5,this)">Sem 5</button>
+      <button class="sem" onclick="semester(6,this)">Sem 6</button>
+    </div>
+    <div id="subjects" class="subject-list"></div>
+  </section>
+
+  <section id="notes" class="panel">
+    <button class="back" onclick="home()">← <span data-en="Home" data-mr="मुख्यपृष्ठ">Home</span></button>
+    <h2 data-en="Notes &amp; Units" data-mr="नोट्स आणि युनिट्स">Notes &amp; Units</h2>
+    <div class="lesson"><p data-en="Choose a semester and subject on the Home page. Notes will be shown when verified content is available." data-mr="मुख्यपृष्ठावर सेमिस्टर आणि विषय निवडा. पडताळलेला मजकूर उपलब्ध झाल्यावर नोट्स येथे दाखवल्या जातील.">Choose a semester and subject on the Home page. Notes will be shown when verified content is available.</p></div>
+  </section>
+  <section id="tests" class="panel">
+    <button class="back" onclick="home()">← <span data-en="Home" data-mr="मुख्यपृष्ठ">Home</span></button>
+    <h2 data-en="Unit Tests" data-mr="युनिट टेस्ट">Unit Tests</h2>
+    <div class="lesson" data-en="Practice sets will be added after the questions are checked against the syllabus." data-mr="प्रश्न अभ्यासक्रमाशी तपासून सराव प्रश्नसंच जोडले जातील.">Practice sets will be added after the questions are checked against the syllabus.</div>
+  </section>
+  <section id="manual" class="panel">
+    <button class="back" onclick="home()">← <span data-en="Home" data-mr="मुख्यपृष्ठ">Home</span></button>
+    <h2 data-en="Manual Answers" data-mr="मॅन्युअल उत्तरे">Manual Answers</h2>
+    <div class="lesson" data-en="Practical manual answers and model answers will be added subject-wise. Please verify answers with your college instructions." data-mr="प्रॅक्टिकल मॅन्युअल आणि नमुना उत्तरे विषयानुसार जोडली जातील. तुमच्या कॉलेजच्या सूचनांशी उत्तरे तपासा.">Practical manual answers and model answers will be added subject-wise. Please verify answers with your college instructions.</div>
+  </section>
+  <section id="papers" class="panel">
+    <button class="back" onclick="home()">← <span data-en="Home" data-mr="मुख्यपृष्ठ">Home</span></button>
+    <h2 data-en="Model Papers / PYQ" data-mr="मॉडेल पेपर / मागील प्रश्नपत्रिका">Model Papers / PYQ</h2>
+    <div class="lesson" data-en="Only verified papers will be listed here. No previous-year paper is attached yet." data-mr="फक्त पडताळलेल्या प्रश्नपत्रिका येथे दिल्या जातील. सध्या मागील वर्षाची प्रश्नपत्रिका जोडलेली नाही.">Only verified papers will be listed here. No previous-year paper is attached yet.</div>
+  </section>
+  <section id="projects" class="panel">
+    <button class="back" onclick="home()">← <span data-en="Home" data-mr="मुख्यपृष्ठ">Home</span></button>
+    <h2 data-en="Projects &amp; Assignments" data-mr="प्रोजेक्ट आणि असाइनमेंट">Projects &amp; Assignments</h2>
+    <div class="lesson" data-en="Project ideas, outlines, and assignment help will be organized here." data-mr="प्रोजेक्ट कल्पना, आराखडे आणि असाइनमेंट मदत येथे दिली जाईल.">Project ideas, outlines, and assignment help will be organized here.</div>
+  </section>
+  <section id="jobs" class="panel">
+    <button class="back" onclick="home()">← <span data-en="Home" data-mr="मुख्यपृष्ठ">Home</span></button>
+    <h2 data-en="Jobs &amp; Apprenticeship" data-mr="नोकरी आणि अप्रेंटिसशिप">Jobs &amp; Apprenticeship</h2>
+    <div class="lesson" data-en="Check official company career pages and verify job details before applying. Never pay a recruiter for a job offer." data-mr="अर्ज करण्यापूर्वी कंपनीची अधिकृत करिअर वेबसाइट आणि नोकरीची माहिती तपासा. नोकरीसाठी भरती करणाऱ्याला पैसे देऊ नका.">Check official company career pages and verify job details before applying. Never pay a recruiter for a job offer.</div>
+  </section>
+  <section id="downloads" class="panel">
+    <button class="back" onclick="home()">← <span data-en="Home" data-mr="मुख्यपृष्ठ">Home</span></button>
+    <h2 data-en="Downloads" data-mr="डाउनलोड्स">Downloads</h2>
+    <div class="lesson" data-en="Download links will appear here after study files are added." data-mr="अभ्यासाच्या फाइल्स जोडल्यावर डाउनलोड लिंक येथे दिसतील.">Download links will appear here after study files are added.</div>
+  </section>
+  <section id="progress" class="panel">
+    <button class="back" onclick="home()">← <span data-en="Home" data-mr="मुख्यपृष्ठ">Home</span></button>
+    <h2 data-en="My Progress" data-mr="माझी प्रगती">My Progress</h2>
+    <div class="lesson">
+      <p data-en="Mark topics you have studied. This progress is saved only in this browser on this device." data-mr="अभ्यास केलेले विषय निवडा. ही नोंद फक्त या डिव्हाइसच्या ब्राउझरमध्ये जतन होते.">Mark topics you have studied. This progress is saved only in this browser on this device.</p>
+      <label><input type="checkbox" id="progressCheck"> <span data-en="I have started studying" data-mr="मी अभ्यास सुरू केला आहे">I have started studying</span></label>
+      <p id="progressMessage" class="muted"></p>
+    </div>
+  </section>
+</main>
+
+<footer>Founded by Dnyan</footer>
+
+<script>
+const subjects = {
+  1: ["Basic Mathematics", "Communication Skills", "Basic Science", "Basic Electrical and Electronics Engineering"],
+  2: ["Applied Mathematics", "Basic Electronics", "Elements of Electrical Engineering", "Engineering Graphics"],
+  3: ["Digital Techniques", "Analog Electronics", "Circuits & Networks", "Principles of Electronic Communication"],
+  4: ["Environmental Education and Sustainability", "Digital Communication Systems", "Consumer Electronics", "Microcontroller Applications"],
+  5: ["Embedded System (315338)", "Mobile & Wireless Communication (315339)", "Advanced Power Electronics (315340)", "IoT Applications (315341)", "Microwave Engineering & Radar System (315342)"],
+  6: ["Management", "Emerging Trends in Electronics", "Optical Network and Satellite Communication", "Computer Network & Data Communication"]
+};
+const mobileNotes = [
+  ["Cellular concept", "A cellular network divides a service area into smaller geographical areas called cells. A base station serves each cell."],
+  ["Frequency reuse", "Frequency reuse means using the same frequency channels in different cells separated by enough distance to reduce interference."],
+  ["Handoff / Handover", "Handoff transfers an active call or data session from one cell/base station to another as a mobile user moves."],
+  ["GSM", "GSM stands for Global System for Mobile Communications, a digital cellular mobile communication standard."],
+  ["CDMA", "CDMA stands for Code Division Multiple Access. Users can share a frequency band using different codes."]
+];
+const mobileQA = [
+  ["What is a cell?", "A cell is a geographical area covered by a base station in a cellular network."],
+  ["What is frequency reuse?", "It is the reuse of the same frequency channels in cells separated by sufficient distance."],
+  ["Why is handoff needed?", "It maintains a call or data session when a user moves from one cell to another."],
+  ["Expand GSM.", "Global System for Mobile Communications."],
+  ["Expand CDMA.", "Code Division Multiple Access."]
+];
+let currentSem = 5;
+let selectedSubject = "";
+let language = "en";
+
+function applyLanguage() {
+  language = document.getElementById("language").value;
+  document.documentElement.lang = language;
+  document.querySelectorAll("[data-en][data-mr]").forEach(el => {
+    el.innerHTML = el.dataset[language];
+  });
+  document.getElementById("search").placeholder = language === "en" ? "Search subjects or notes..." : "विषय किंवा नोट्स शोधा...";
+  updateNotice();
+  renderSubjects();
 }
-function renderSubjects(){let arr=data[currentSem];document.getElementById('subjects').innerHTML='<h2>Semester '+currentSem+' — Subjects</h2>'+arr.map((s,i)=>`<div class="subject searchable"><button class="head" onclick="toggle(this)"><span>${s}</span><span>＋</span></button><div class="body"><div class="actions"><button onclick="content('notes',${currentSem},${i})">📘 Notes</button><button onclick="content('manual',${currentSem},${i})">✅ Manual Answers</button><button onclick="content('papers',${currentSem},${i})">📄 Model Paper / PYQ</button></div><div id="content-${currentSem}-${i}"><span class="muted">साहित्य पाहण्यासाठी वरील पर्याय निवडा.</span></div></div></div>`).join('')}
-function toggle(btn){let b=btn.nextElementSibling;b.classList.toggle('open');btn.lastElementChild.textContent=b.classList.contains('open')?'−':'＋'}
-function content(type,sem,i){let s=data[sem][i],el=document.getElementById(`content-${sem}-${i}`);if(sem===5&&s==="Mobile & Wireless Communication"&&type==="notes"){el.innerHTML='<div class="lesson"><h3>Mobile &amp; Wireless Communication — नमुना नोट्स</h3>'+mobileNotes.map(x=>`<p><b>${x[0]}:</b> ${x[1]}</p>`).join('')+'<div class="callout">अभ्यास टिप: प्रत्येक संज्ञेची व्याख्या आणि उपयोग 2–3 वाक्यांत लिहिण्याचा सराव करा.</div></div>'}
-else if(sem===5&&s==="Mobile & Wireless Communication"&&type==="manual"){el.innerHTML='<div class="lesson"><h3>नमुना प्रश्नोत्तरे</h3>'+mobileQA.map((x,i)=>`<div class="qa"><div class="label">प्रश्न ${i+1}</div><b>${x[0]}</b><p><span class="label">उत्तर</span><br>${x[1]}</p></div>`).join('')+'</div>'}
-else if(type==="notes"){el.innerHTML=`<p><b>${s} — Notes</b></p><p>या विषयाच्या पूर्ण unit-wise नोट्स पुढील content update मध्ये जोडल्या जातील.</p><p>तुमच्याकडे syllabus किंवा manual चे फोटो/PDF असल्यास पाठवा; त्यानुसार अचूक नोट्स तयार करता येतील.</p>`}
-else if(type==="manual"){el.innerHTML=`<p><b>${s} — Manual Answers</b></p><p>या विषयाची प्रश्नोत्तरे पुढील update मध्ये जोडली जातील. अधिकृत manual मधील प्रश्नांची पाने पाठवल्यास त्यानुसार उत्तरलेखन तयार करता येईल.</p>`}
-else{el.innerHTML=`<p><b>${s} — Model Paper / PYQ</b></p><p>सध्या या विषयाची verified paper फाइल जोडलेली नाही. बनावट previous-year प्रश्न म्हणून कोणतेही प्रश्न दाखवलेले नाहीत.</p>`}}
-function showPanel(id){document.querySelectorAll('.panel').forEach(p=>p.classList.remove('show'));document.getElementById(id).classList.add('show');document.getElementById(id).scrollIntoView({behavior:'smooth'})}
-function home(){document.querySelectorAll('.panel').forEach(p=>p.classList.remove('show'));document.getElementById('home').scrollIntoView({behavior:'smooth'})}
-function schemeMsg(){let v=document.getElementById('scheme').value;document.getElementById('notice').textContent=v==='K-Scheme'?'K-Scheme निवडले आहे. विषय/कोड तुमच्या चालू MSBTE syllabus शी जुळवून घ्या.':'हा scheme पर्याय निवडला आहे; सध्या दाखवलेली विषययादी K-Scheme starter list आहे. कृपया अधिकृत syllabus पडताळा.'}
-function filterItems(){let q=document.getElementById('search').value.toLowerCase();document.querySelectorAll('.tile,.subject').forEach(e=>e.style.display=!q||e.innerText.toLowerCase().includes(q)?'':'none')}
-renderSubjects();
-</script></body></html>
+function updateNotice() {
+  const scheme = document.getElementById("scheme").value;
+  document.getElementById("notice").textContent = language === "en"
+    ? `${scheme}-Scheme selected. Please verify subject names and codes with the current MSBTE syllabus.`
+    : `${scheme}-Scheme निवडले आहे. विषयांची नावे आणि कोड चालू MSBTE अभ्यासक्रमाशी तपासा.`;
+}
+function semester(n, btn) {
+  currentSem = n;
+  document.querySelectorAll(".sem").forEach(el => el.classList.remove("active"));
+  btn.classList.add("active");
+  renderSubjects();
+}
+function renderSubjects() {
+  const list = subjects[currentSem] || [];
+  const q = document.getElementById("search").value.trim().toLowerCase();
+  const filtered = list.filter(s => s.toLowerCase().includes(q));
+  const title = language === "en" ? `Semester ${currentSem} Subjects` : `सेमिस्टर ${currentSem} चे विषय`;
+  const el = document.getElementById("subjects");
+  el.innerHTML = `<h2>${title}</h2>` + (filtered.length ? filtered.map((s, i) => {
+    const safe = s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+    return `<div class="subject"><button class="subject-head" onclick="toggleSubject(this)"><span>${safe}</span><span>＋</span></button><div class="subject-body"><p>${language === "en" ? "Choose a section:" : "विभाग निवडा:"}</p><button class="small-btn" onclick="openSubjectContent('notes','${safe.replace(/'/g, "\\'")}')">${language === "en" ? "Notes" : "नोट्स"}</button><button class="small-btn" onclick="openSubjectContent('manual','${safe.replace(/'/g, "\\'")}')">${language === "en" ? "Manual Answers" : "मॅन्युअल उत्तरे"}</button><button class="small-btn" onclick="openSubjectContent('papers','${safe.replace(/'/g, "\\'")}')">${language === "en" ? "Model Paper / PYQ" : "मॉडेल पेपर / PYQ"}</button></div></div>`;
+  }).join("") : `<div class="lesson">${language === "en" ? "No matching subjects found." : "जुळणारे विषय सापडले नाहीत."}</div>`);
+}
+function toggleSubject(btn) {
+  const body = btn.nextElementSibling;
+  body.classList.toggle("open");
+  btn.lastElementChild.textContent = body.classList.contains("open") ? "−" : "＋";
+}
+function openSubjectContent(type, subject) {
+  selectedSubject = subject;
+  showPanel(type);
+  const title = subject.replace(/&/g, "&amp;").replace(/</g, "&lt;");
+  let html = "";
+  if (currentSem === 5 && subject.includes("Mobile & Wireless Communication") && type === "notes") {
+    html = mobileNotes.map(([h,p]) => `<div class="lesson"><h3>${h}</h3><p>${p}</p></div>`).join("");
+  } else if (currentSem === 5 && subject.includes("Mobile & Wireless Communication") && type === "manual") {
+    html = mobileQA.map(([q,a]) => `<div class="lesson"><h3>${q}</h3><p>${a}</p></div>`).join("");
+  } else {
+    const msg = language === "en"
+      ? "Verified subject-wise content has not been added yet. This section is ready for notes, answers, and papers."
+      : "या विषयाचा पडताळलेला मजकूर अद्याप जोडलेला नाही. येथे नोट्स, उत्तरे आणि प्रश्नपत्रिका जोडता येतील.";
+    html = `<div class="lesson"><h3>${title}</h3><p>${msg}</p></div>`;
+  }
+  const heading = document.querySelector(`#${type} h2`);
+  if (heading) heading.textContent = (language === "en" ? ({notes:"Notes & Units",manual:"Manual Answers",papers:"Model Papers / PYQ"}[type]) : ({notes:"नोट्स आणि युनिट्स",manual:"मॅन्युअल उत्तरे",papers:"मॉडेल पेपर / PYQ"}[type])) + (selectedSubject ? ` — ${selectedSubject}` : "");
+  const old = document.getElementById(`${type}-content`);
+  if (old) old.remove();
+  const box = document.createElement("div");
+  box.id = `${type}-content`;
+  box.innerHTML = html;
+  document.querySelector(`#${type}`).appendChild(box);
+}
+function showPanel(id) {
+  document.querySelectorAll(".panel").forEach(p => p.classList.remove("show"));
+  document.getElementById("home").style.display = "none";
+  document.getElementById(id).classList.add("show");
+  window.scrollTo({top: 0, behavior: "smooth"});
+}
+function home() {
+  document.querySelectorAll(".panel").forEach(p => p.classList.remove("show"));
+  document.getElementById("home").style.display = "block";
+  window.scrollTo({top: 0, behavior: "smooth"});
+}
+document.getElementById("language").addEventListener("change", applyLanguage);
+document.getElementById("scheme").addEventListener("change", updateNotice);
+document.getElementById("search").addEventListener("input", renderSubjects);
+const progressCheck = document.getElementById("progressCheck");
+progressCheck.checked = localStorage.getItem("studyStarted") === "true";
+progressCheck.addEventListener("change", () => {
+  localStorage.setItem("studyStarted", String(progressCheck.checked));
+  document.getElementById("progressMessage").textContent = progressCheck.checked
+    ? (language === "en" ? "Progress saved on this device." : "या डिव्हाइसवर प्रगती जतन झाली.")
+    : "";
+});
+applyLanguage();
+document.getElementById("progressMessage").textContent = progressCheck.checked
+  ? (language === "en" ? "Progress saved on this device." : "या डिव्हाइसवर प्रगती जतन झाली.")
+  : "";
+</script>
+</body>
+</html>
