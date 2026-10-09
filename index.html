@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="mr">
+<html lang="en">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#123b82">
@@ -19,17 +19,17 @@ h2{font-size:21px;margin:22px 0 12px}.semgrid{display:grid;grid-template-columns
 <body>
 <header><div class="wrap"><h1>📡 All-in-One E&amp;TC EJ</h1><p>Diploma Electronics &amp; Telecommunication — Free Study Portal</p><span class="badge">NOTES • MANUAL ANSWERS • EXAM PREPARATION</span></div></header>
 <main>
-<div class="toolbar"><input id="search" placeholder="🔎 विषय किंवा नोट्स शोधा..." oninput="filterItems()"><select id="scheme" onchange="schemeMsg()"><option>K-Scheme</option><option>J-Scheme (subject mapping not added)</option><option>Other scheme</option></select></div>
-<div class="notice" id="notice">K-Scheme निवडले आहे. विषय/कोड तुमच्या चालू MSBTE syllabus शी जुळवून घ्या.</div>
+<div class="toolbar"><select id="language" aria-label="Language" onchange="changeLanguage()"><option value="en" selected>English</option><option value="mr">मराठी</option></select><input id="search" placeholder="🔎 Search subjects or notes..." oninput="filterItems()"><select id="scheme" onchange="schemeMsg()"><option>K-Scheme</option><option>J-Scheme (subject mapping not added)</option><option>Other scheme</option></select></div>
+<div class="notice" id="notice">K-Scheme is selected. Please verify subjects and codes against the current MSBTE syllabus.</div>
 <section id="home">
-<h2>अभ्यास विभाग</h2>
+<h2 data-en="Study Sections" data-mr="अभ्यास विभाग">Study Sections</h2>
 <div class="grid">
-<div class="card tile" onclick="showPanel('notes')">📘<b>Notes &amp; Units</b><span class="muted">विषयानुसार नोट्स</span></div>
-<div class="card tile" onclick="showPanel('manual')">✅<b>Manual Answers</b><span class="muted">प्रश्नोत्तरे व उत्तरलेखन</span></div>
-<div class="card tile" onclick="showPanel('papers')">📄<b>Model Papers / PYQ</b><span class="muted">सरावासाठी विभाग</span></div>
-<div class="card tile" onclick="showPanel('how')">📥<b>PDF / वापर</b><span class="muted">अभ्यास साहित्य कसे वापरायचे</span></div>
+<div class="card tile" onclick="showPanel('notes')">📘<b>Notes &amp; Units</b><span class="muted" data-en="Subject-wise notes" data-mr="विषयानुसार नोट्स">Subject-wise notes</span></div>
+<div class="card tile" onclick="showPanel('manual')">✅<b>Manual Answers</b><span class="muted" data-en="Questions and answers" data-mr="प्रश्नोत्तरे व उत्तरलेखन">Questions and answers</span></div>
+<div class="card tile" onclick="showPanel('papers')">📄<b>Model Papers / PYQ</b><span class="muted" data-en="Practice section" data-mr="सरावासाठी विभाग">Practice section</span></div>
+<div class="card tile" onclick="showPanel('how')">📥<b>PDF / वापर</b><span class="muted" data-en="How to use study material" data-mr="अभ्यास साहित्य कसे वापरायचे">How to use study material</span></div>
 </div>
-<h2>Semester निवडा</h2><div class="semgrid">
+<h2 data-en="Choose Semester" data-mr="Semester निवडा">Choose Semester</h2><div class="semgrid">
 <button class="sem" onclick="semester(1,this)">Sem 1</button><button class="sem" onclick="semester(2,this)">Sem 2</button><button class="sem" onclick="semester(3,this)">Sem 3</button><button class="sem" onclick="semester(4,this)">Sem 4</button><button class="sem active" onclick="semester(5,this)">Sem 5</button><button class="sem" onclick="semester(6,this)">Sem 6</button>
 </div><div id="subjects"></div>
 </section>
@@ -63,6 +63,15 @@ const mobileQA=[
 ];
 let currentSem=5;
 function semester(n,btn){currentSem=n;document.querySelectorAll('.sem').forEach(x=>x.classList.remove('active'));btn.classList.add('active');renderSubjects();document.getElementById('subjects').scrollIntoView({behavior:'smooth',block:'start'})}
+
+function changeLanguage(){
+ const lang=document.getElementById('language').value; document.documentElement.lang=lang;
+ document.querySelectorAll('[data-en][data-mr]').forEach(el=>{el.textContent=el.dataset[lang]});
+ document.getElementById('search').placeholder=lang==='en'?'🔎 Search subjects or notes...':'🔎 विषय किंवा नोट्स शोधा...';
+ const notice=document.getElementById('notice'); const v=document.getElementById('scheme').value;
+ if(lang==='en') notice.textContent=v==='K-Scheme'?'K-Scheme is selected. Please verify subjects and codes against the current MSBTE syllabus.':'This scheme list is a starter only. Please verify it against the official syllabus.';
+ else notice.textContent=v==='K-Scheme'?'K-Scheme निवडले आहे. विषय/कोड तुमच्या चालू MSBTE syllabus शी जुळवून घ्या.':'ही विषययादी प्राथमिक आहे. अधिकृत syllabus तपासा.';
+}
 function renderSubjects(){let arr=data[currentSem];document.getElementById('subjects').innerHTML='<h2>Semester '+currentSem+' — Subjects</h2>'+arr.map((s,i)=>`<div class="subject searchable"><button class="head" onclick="toggle(this)"><span>${s}</span><span>＋</span></button><div class="body"><div class="actions"><button onclick="content('notes',${currentSem},${i})">📘 Notes</button><button onclick="content('manual',${currentSem},${i})">✅ Manual Answers</button><button onclick="content('papers',${currentSem},${i})">📄 Model Paper / PYQ</button></div><div id="content-${currentSem}-${i}"><span class="muted">साहित्य पाहण्यासाठी वरील पर्याय निवडा.</span></div></div></div>`).join('')}
 function toggle(btn){let b=btn.nextElementSibling;b.classList.toggle('open');btn.lastElementChild.textContent=b.classList.contains('open')?'−':'＋'}
 function content(type,sem,i){let s=data[sem][i],el=document.getElementById(`content-${sem}-${i}`);if(sem===5&&s==="Mobile & Wireless Communication"&&type==="notes"){el.innerHTML='<div class="lesson"><h3>Mobile &amp; Wireless Communication — नमुना नोट्स</h3>'+mobileNotes.map(x=>`<p><b>${x[0]}:</b> ${x[1]}</p>`).join('')+'<div class="callout">अभ्यास टिप: प्रत्येक संज्ञेची व्याख्या आणि उपयोग 2–3 वाक्यांत लिहिण्याचा सराव करा.</div></div>'}
